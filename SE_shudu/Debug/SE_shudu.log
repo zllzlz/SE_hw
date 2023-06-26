@@ -1,0 +1,7 @@
+﻿  shudu.cpp
+C:\Users\zlllllau\source\repos\shudu_func.cpp(206,63): warning C4244: “参数”: 从“_Rep”转换到“unsigned int”，可能丢失数据
+          with
+          [
+              _Rep=std::chrono::system_clock::rep
+          ]
+  SE_shudu.vcxproj -> C:\Users\zlllllau\source\repos\SE_shudu\Debug\SE_shudu.exe
