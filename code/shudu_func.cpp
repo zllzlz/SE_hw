@@ -78,7 +78,9 @@ void ShuDu::gen_shudu_ending(int c = 1) {
 	FILE* shudu_ending_file;
 	errno_t err;
 	err = fopen_s(&shudu_ending_file, "shudu.txt", "w");
-
+	if (err) {
+		printf("打开文件失败\n");
+	}
 	//目标生成c个数独终局
 	int shift[9] = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
 
@@ -108,9 +110,9 @@ void ShuDu::gen_shudu_ending(int c = 1) {
 					next_permutation(row + 1, row + 9); //第一个数字不变
 				}
 				int m = 0;
-				for (int i = 0; i < 9; i++) {
-					for (int j = 0; j < 9; j++) {
-						matx[m + create_num * 163] = row[(j + shift[i]) % 9];
+				for (int p = 0; p < 9; p++) {
+					for (int q = 0; q < 9; q++) {
+						matx[m + create_num * 163] = row[(q + shift[p]) % 9];
 						m += 2;
 					}
 					matx[m - 1 + 163 * create_num] = '\n';
@@ -133,8 +135,10 @@ void ShuDu::fixed_r_game(int r = 20) {
 	gen_shudu_ending(c);
 	FILE* fpQues1;
 	errno_t err = fopen_s(&fpQues1, "game.txt", "w");
-
-	int temp = r;
+	if (err) {
+		printf("打开文件失败\n");
+	}
+	int temp;
 	while (c--) {
 		if (arg_check.get_ArgType() == 5)
 			temp = r_left + rand() % r_right;
@@ -239,8 +243,8 @@ void ShuDu::gen_onlySolu_game() {
 		}
 		//生成合适的数独游戏
 		if (!is_only_solution(0, 0)) {
-			continue;
 			printf("再次尝试\n");
+			continue;
 		}
 		int m = 0;
 		for (int i = 0; i < 9; i++) {
