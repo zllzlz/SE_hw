@@ -35,7 +35,7 @@ ShuDu::ShuDu(ArgCheck arg_check) {
 		break;
 	case 2:
 		//printf("求解数独待实现。\n");
-		this->filepath = arg_check.get_filepath();
+		this->filepath = arg_check.GetFilepath();
 		break;
 	case 3:
 		this->n = arg_check.get_n();
@@ -295,8 +295,7 @@ void ShuDu::gen_shudu_game(int r = 20) {
 //******求解数独相关函数*******
 
 //读取game.txt文件
-vector<vector<vector<int>>> ShuDu::read_game_file(string filepath1)
-{
+vector<vector<vector<int>>> ShuDu::ReadGameFile(string filepath1){
 	//string filepath = "game.txt";
 	ifstream myfile(filepath1);
 	string temp;
@@ -322,7 +321,6 @@ vector<vector<vector<int>>> ShuDu::read_game_file(string filepath1)
 
 	vector<vector<vector<int>>> tmp3;
 	vector<vector<int>> tmp2;
-	vector<int> tmp1;
 
 	//消除纯换行行
 	for (int i = 0; i < result.size(); i++) {
@@ -348,7 +346,7 @@ vector<vector<vector<int>>> ShuDu::read_game_file(string filepath1)
 }
 
 //判断该数字是否合适
-bool ShuDu::isValid(int row, int col, int val, vector<vector<int>>& board) {
+bool ShuDu::IsValid(int row, int col, int val, vector<vector<int>>& board) {
 	int startRow = (row / 3) * 3;
 	int startCol = (col / 3) * 3;
 	for (int i = 0; i < board.size(); ++i) {
@@ -359,7 +357,7 @@ bool ShuDu::isValid(int row, int col, int val, vector<vector<int>>& board) {
 	return true;
 }
 
-bool ShuDu::backtracking(vector<vector<int>>& board) {
+bool ShuDu::BackTracking(vector<vector<int>>& board) {
 
 	//遍历所有网格
 	for (int i = 0; i < board.size(); ++i) {        // row
@@ -370,9 +368,9 @@ bool ShuDu::backtracking(vector<vector<int>>& board) {
 
 			//  尝试填入数字1～9。
 			for (int ch = 1; ch <= 9; ch++) {
-				if (isValid(i, j, ch, board)) {  //判断是否合法
+				if (IsValid(i, j, ch, board)) {  //判断是否合法
 					board[i][j] = ch;
-					if (backtracking(board)) return true;
+					if (BackTracking(board)) return true;
 				}
 			}
 
@@ -385,10 +383,9 @@ bool ShuDu::backtracking(vector<vector<int>>& board) {
 }
 
 
-void ShuDu::solve_shudu(string filepath1)
-{
+void ShuDu::SolveShuDu(const string& filepath1){
 	//文件读取
-	vector<vector<vector<int>>> tmp3 = read_game_file(filepath1);
+	vector<vector<vector<int>>> tmp3 = ReadGameFile(filepath1);
 
 	fstream f;
 	//文件写入，会覆盖原来的内容
@@ -398,7 +395,7 @@ void ShuDu::solve_shudu(string filepath1)
 	for (int k = 0; k < tmp3.size(); k++)
 	{
 		//如果找到了符合要求的终局
-		if (backtracking(tmp3[k]))
+		if (BackTracking(tmp3[k]))
 		{
 			// 进行文件的写入
 			for (int i = 0; i < tmp3[k].size(); i++) {
@@ -413,4 +410,5 @@ void ShuDu::solve_shudu(string filepath1)
 
 	f.close();
 
+	printf("数独游戏求解完毕，见文件shuduku.txt\n");
 }

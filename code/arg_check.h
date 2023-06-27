@@ -46,7 +46,7 @@ public:
 	int get_r_left();
 	int get_r_right();
 
-	string get_filepath();
+	string GetFilepath();
 	
 
 private:

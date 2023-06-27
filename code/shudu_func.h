@@ -31,12 +31,12 @@ public:
 
 	//******求解数独相关函数*******
 	// game.txt文件读取
-	vector<vector<vector<int>>> read_game_file(string filepath1);
+	vector<vector<vector<int>>> ReadGameFile(string filepath1);
     // 该数字是否合适
-    bool isValid(int row, int col, int val, vector<vector<int>>& board);
+    bool IsValid(int row, int col, int val, vector<vector<int>>& board);
     //数独求解
-    bool backtracking(vector<vector<int>>& board);
-	void solve_shudu(string filepath1);
+    bool BackTracking(vector<vector<int>>& board);
+	void SolveShuDu(const string& filepath1);
 
 
 private:

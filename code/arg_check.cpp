@@ -150,6 +150,6 @@ int ArgCheck::get_r_right() {
 	return this->r_right;
 }
 
-string ArgCheck::get_filepath() {
+string ArgCheck::GetFilepath() {
 	return this->filepath;
 }

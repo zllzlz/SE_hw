@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 		//sudoku.exe -s game.txt
 	case 2:
 		//添加数独游戏的计算
-		shudu_op.solve_shudu(arg_check.get_filepath());
+		shudu_op.SolveShuDu(arg_check.GetFilepath());
 		break;
 		//sudoku.exe -n 1000 
 	case 3:
