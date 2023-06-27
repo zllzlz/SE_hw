@@ -1,8 +1,9 @@
+#pragma once
 #include<iostream>
-#include"C:\Users\zlllllau\source\repos\arg_check.h"
-#include"C:\Users\zlllllau\source\repos\shudu_func.h"
-#include"C:\Users\zlllllau\source\repos\arg_check.cpp"
-#include"C:\Users\zlllllau\source\repos\shudu_func.cpp"
+#include"arg_check.h"
+#include"shudu_func.h"
+#include"arg_check.cpp"
+#include"shudu_func.cpp"
 using namespace std;
 
 
@@ -33,31 +34,32 @@ int main(int argc, char* argv[]) {
 	ShuDu shudu_op = ShuDu(arg_check);
 	//根据识别的参数进行相应的操作
 	switch (type) {
-	//sudoku.exe -c 20
+		//sudoku.exe -c 20
 	case 1:
 		shudu_op.gen_shudu_ending(arg_check.get_c());
 		break;
-	//sudoku.exe -s game.txt
+		//sudoku.exe -s game.txt
 	case 2:
-		shudu_op.gen_shudu_game(arg_check.get_m());
+		//添加数独游戏的计算
+		shudu_op.solve_shudu();
 		break;
-	//sudoku.exe -n 1000 
+		//sudoku.exe -n 1000 
 	case 3:
 		shudu_op.gen_shudu_game(arg_check.get_m());
 		break;
-	//sudoku.exe -n 1000 -m 1 
+		//sudoku.exe -n 1000 -m 1 
 	case 4:
 		shudu_op.gen_shudu_game(arg_check.get_m());
 		break;
-	//sudoku.exe -n 20 -r 20~55
+		//sudoku.exe -n 20 -r 20~55
 	case 5:
 		shudu_op.gen_shudu_game(arg_check.get_r_left());
 		break;
-	//sudoku.exe -n 20 -u
+		//sudoku.exe -n 20 -u
 	case 6:
 		shudu_op.gen_shudu_game(arg_check.get_r_left());
 		break;
-	//错误输入
+		//错误输入
 	case 7:
 		break;
 	}
