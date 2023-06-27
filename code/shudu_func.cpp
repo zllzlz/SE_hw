@@ -27,6 +27,7 @@ ShuDu::ShuDu(ArgCheck arg_check) {
 	this->r_left = -1;
 	this->r_right = -1;
 	this->only_solution = 0;
+	this->filepath = "NONE";
 
 	switch (arg_check.get_ArgType()) {
 	case 1:
@@ -34,6 +35,7 @@ ShuDu::ShuDu(ArgCheck arg_check) {
 		break;
 	case 2:
 		//printf("求解数独待实现。\n");
+		this->filepath = arg_check.get_filepath();
 		break;
 	case 3:
 		this->n = arg_check.get_n();
@@ -293,11 +295,10 @@ void ShuDu::gen_shudu_game(int r = 20) {
 //******求解数独相关函数*******
 
 //读取game.txt文件
-//文件读取
-vector<vector<vector<int>>> ShuDu::read_game_file()
+vector<vector<vector<int>>> ShuDu::read_game_file(string filepath1)
 {
-	string filepath = "game.txt";
-	ifstream myfile(filepath);
+	//string filepath = "game.txt";
+	ifstream myfile(filepath1);
 	string temp;
 	vector<vector<int>> result;
 	vector<int> res;
@@ -384,10 +385,10 @@ bool ShuDu::backtracking(vector<vector<int>>& board) {
 }
 
 
-void ShuDu::solve_shudu()
+void ShuDu::solve_shudu(string filepath1)
 {
 	//文件读取
-	vector<vector<vector<int>>> tmp3 = read_game_file();
+	vector<vector<vector<int>>> tmp3 = read_game_file(filepath1);
 
 	fstream f;
 	//文件写入，会覆盖原来的内容

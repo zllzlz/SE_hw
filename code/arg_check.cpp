@@ -20,6 +20,7 @@ ArgCheck::ArgCheck(int argc, char* argv[]) {
 	this->m = -1;
 	this->r_left = -1;
 	this->r_right = -1;
+	this->filepath = "NONE";
 }
 
 //分析参数
@@ -38,6 +39,7 @@ void ArgCheck::analy_Arg() {
 		//指令形式：sudoku.exe -s game.txt
 		if (strcmp(argv[1], "-s") == 0) {
 			//printf("-s指令待实现\n");
+			filepath = argv[2];
 			arg_type = 2;
 			return;
 		}
@@ -119,6 +121,7 @@ void ArgCheck::print_arg() {
 	printf("参数m:%d\t", m);
 	printf("参数r_left:%d\t", r_left);
 	printf("参数r_right:%d\t\n", r_right);
+	printf("参数filepath:%s\t\n", filepath.c_str());
 }
 
 //返回参数类型
@@ -145,4 +148,8 @@ int ArgCheck::get_r_left() {
 
 int ArgCheck::get_r_right() {
 	return this->r_right;
+}
+
+string ArgCheck::get_filepath() {
+	return this->filepath;
 }

@@ -46,6 +46,9 @@ public:
 	int get_r_left();
 	int get_r_right();
 
+	string get_filepath();
+	
+
 private:
 	//参数数量
 	int argc;
@@ -63,5 +66,8 @@ private:
 	//挖空的数量 20-55
 	int r_left;
 	int r_right;
+
+	//求解时读取的文件路径
+	string filepath;
 
 };
