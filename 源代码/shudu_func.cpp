@@ -302,15 +302,6 @@ void ShuDu::gen_shudu_game(int r = 20) {
 vector<vector<vector<int>>> ShuDu::ReadGameFile(string filepath1){
 	//string filepath = "game.txt";
 	ifstream myfile(filepath1);
-	// 判断文件是否存在
-	if (myfile.good())
-	{
-		printf("game.txt文件读取成功...\n");
-	}
-	else
-	{
-		printf("游戏文件读取失败，请重试...\n");
-	}
 	string temp;
 	vector<vector<int>> result;
 	vector<int> res;
@@ -397,6 +388,20 @@ bool ShuDu::BackTracking(vector<vector<int>>& board) {
 
 
 void ShuDu::SolveShuDu(const string& filepath1){
+
+	//判断文件是否存在
+	ifstream myfile(filepath1);
+	// 判断文件是否存在
+	if (myfile.good())
+	{
+		printf("game.txt文件读取成功...\n");
+	}
+	else
+	{
+		printf("游戏文件读取失败，请重试...\n");
+	}
+
+
 	//文件读取
 	vector<vector<vector<int>>> tmp3 = ReadGameFile(filepath1);
 
@@ -423,5 +428,6 @@ void ShuDu::SolveShuDu(const string& filepath1){
 
 	f.close();
 
-	printf("数独游戏求解完毕，见文件shuduku.txt\n");
+	if (myfile.good())
+	    printf("数独游戏求解完毕，见文件shuduku.txt\n");
 }
