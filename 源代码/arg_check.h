@@ -8,66 +8,66 @@ using namespace std;
 
 
 /*
-* ÀàÐÍ1£ºsudoku.exe -c 20 [±íÊ¾Éú³É20¸öÊý¶ÀÖÕÅÌ]
-* ÀàÐÍ2£ºsudoku.exe -s game.txt [±íÊ¾´Ógame.txt¶ÁÈ¡Èô¸É¸öÊý¶ÀÓÎÏ·,²¢¸ø³öÆä½â´ð£¬Éú³Éµ½sudoku.txtÖÐ]
-* ÀàÐÍ3£ºsudoku.exe -n 1000 [±íÊ¾Éú³É1000¸öÊý¶ÀÓÎÏ·]
-* ÀàÐÍ4£ºsudoku.exe -n 1000 -m 1 [±íÊ¾Éú³É1000¸ö¼òµ¥ÊýÓÎÏ·£¬Ö»ÓÐmºÍnÒ»ÆðÊ¹ÓÃ²ÅÈÏÎª²ÎÊýÎÞÎó£¬·ñÔòÇë±¨´í,m±íÊ¾Éú³ÉÓÎÏ·µÄÄÑ¶È]
-* ÀàÐÍ5£ºsudoku.exe -n 20 -r 20~55 [±íÊ¾Éú³É20¸öÍÚ¿ÕÊýÔÚ20µ½55Ö®¼äµÄÊý¶ÀÓÎÏ·£¬Ö»ÓÐrºÍnÒ»ÆðÊ¹ÓÃ²ÅÈÏÎª²ÎÊýÎÞÎó£¬·ñÔòÇë±¨´í]
-* ÀàÐÍ6£ºsudoku.exe -n 20 -u [±íÊ¾Éú³É20¸ö½âÎ¨Ò»µÄÊý¶ÀÓÎÏ·,Ö»ÓÐuºÍnÒ»ÆðÊ¹ÓÃ²ÅÈÏÎª²ÎÊýÎÞÎó£¬·ñÔòÇë±¨´í]
-* ÀàÐÍ7£º´íÎóÊäÈë
+* ç±»åž‹1ï¼šsudoku.exe -c 20 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæ•°ç‹¬ç»ˆç›˜]
+* ç±»åž‹2ï¼šsudoku.exe -s game.txt [è¡¨ç¤ºä»Žgame.txtè¯»å–è‹¥å¹²ä¸ªæ•°ç‹¬æ¸¸æˆ,å¹¶ç»™å‡ºå…¶è§£ç­”ï¼Œç”Ÿæˆåˆ°sudoku.txtä¸­]
+* ç±»åž‹3ï¼šsudoku.exe -n 1000 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªæ•°ç‹¬æ¸¸æˆ]
+* ç±»åž‹4ï¼šsudoku.exe -n 1000 -m 1 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªç®€å•æ•°æ¸¸æˆï¼Œåªæœ‰må’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™,mè¡¨ç¤ºç”Ÿæˆæ¸¸æˆçš„éš¾åº¦]
+* ç±»åž‹5ï¼šsudoku.exe -n 20 -r 20~55 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæŒ–ç©ºæ•°åœ¨20åˆ°55ä¹‹é—´çš„æ•°ç‹¬æ¸¸æˆï¼Œåªæœ‰rå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* ç±»åž‹6ï¼šsudoku.exe -n 20 -u [è¡¨ç¤ºç”Ÿæˆ20ä¸ªè§£å”¯ä¸€çš„æ•°ç‹¬æ¸¸æˆ,åªæœ‰uå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* ç±»åž‹7ï¼šé”™è¯¯è¾“å…¥
 */
 
 
 
 
-//´¦ÀíÊäÈë²ÎÊýµÄÀà
+//å¤„ç†è¾“å…¥å‚æ•°çš„ç±»
 class ArgCheck {
 public:
-	//³õÊ¼»¯º¯Êý
+	//åˆå§‹åŒ–å‡½æ•°
 	ArgCheck() {};
 	ArgCheck(int argc, char* argv[]);
 
-	//·ÖÎöÊäÈë²ÎÊý
-	void analy_Arg();
+	//åˆ†æžè¾“å…¥å‚æ•°
+	void AnalyArg();
 
-	//²ÎÊýÊäÈëÊÇ·ñºÏ·¨
-	bool valid_arg();
+	//å‚æ•°è¾“å…¥æ˜¯å¦åˆæ³•
+	bool ValidArg();
 
-	//´òÓ¡²ÎÊý£¨µ÷ÊÔÊ¹ÓÃ£©
-	void print_arg();
+	//æ‰“å°å‚æ•°ï¼ˆè°ƒè¯•ä½¿ç”¨ï¼‰
+	void PrintArg();
 
-	//·µ»Ø²ÎÊýÀàÐÍ
-	int get_ArgType();
+	//è¿”å›žå‚æ•°ç±»åž‹
+	int GetArgType();
 
-	//·µ»Ø²ÎÊýÖµ
-	int get_c();
-	int get_n();
-	int get_m();
-	int get_r_left();
-	int get_r_right();
+	//è¿”å›žå‚æ•°å€¼
+	int GetC();
+	int GetN();
+	int GetM();
+	int GetRLeft();
+	int GetRRight();
 
 	string GetFilepath();
 	
 
 private:
-	//²ÎÊýÊýÁ¿
+	//å‚æ•°æ•°é‡
 	int argc;
-	//²ÎÊý×Ö·û´®
+	//å‚æ•°å­—ç¬¦ä¸²
 	char** argv;
 
-	//²ÎÊýÀàÐÍ
+	//å‚æ•°ç±»åž‹
 	int arg_type;
-	//Êý¶ÀÖÕ¾ÖµÄ¸öÊý 1-1000000
+	//æ•°ç‹¬ç»ˆå±€çš„ä¸ªæ•° 1-1000000
 	int c;
-	//Êý¶ÀÓÎÏ·µÄ¸öÊý 1-10000
+	//æ•°ç‹¬æ¸¸æˆçš„ä¸ªæ•° 1-10000
 	int n;
-	//ÄÑ¶È 1-3
+	//éš¾åº¦ 1-3
 	int m;
-	//ÍÚ¿ÕµÄÊýÁ¿ 20-55
+	//æŒ–ç©ºçš„æ•°é‡ 20-55
 	int r_left;
 	int r_right;
 
-	//Çó½âÊ±¶ÁÈ¡µÄÎÄ¼þÂ·¾¶
+	//æ±‚è§£æ—¶è¯»å–çš„æ–‡ä»¶è·¯å¾„
 	string filepath;
 
 };
