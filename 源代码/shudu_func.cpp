@@ -1,12 +1,12 @@
 #pragma once
 /*
-* ÀàĞÍ1£ºsudoku.exe -c 20 [±íÊ¾Éú³É20¸öÊı¶ÀÖÕÅÌ]
-* ÀàĞÍ2£ºsudoku.exe -s game.txt [±íÊ¾´Ógame.txt¶ÁÈ¡Èô¸É¸öÊı¶ÀÓÎÏ·,²¢¸ø³öÆä½â´ğ£¬Éú³Éµ½sudoku.txtÖĞ]
-* ÀàĞÍ3£ºsudoku.exe -n 1000 [±íÊ¾Éú³É1000¸öÊı¶ÀÓÎÏ·]
-* ÀàĞÍ4£ºsudoku.exe -n 1000 -m 1 [±íÊ¾Éú³É1000¸ö¼òµ¥ÊıÓÎÏ·£¬Ö»ÓĞmºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í,m±íÊ¾Éú³ÉÓÎÏ·µÄÄÑ¶È]
-* ÀàĞÍ5£ºsudoku.exe -n 20 -r 20~55 [±íÊ¾Éú³É20¸öÍÚ¿ÕÊıÔÚ20µ½55Ö®¼äµÄÊı¶ÀÓÎÏ·£¬Ö»ÓĞrºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í]
-* ÀàĞÍ6£ºsudoku.exe -n 20 -u [±íÊ¾Éú³É20¸ö½âÎ¨Ò»µÄÊı¶ÀÓÎÏ·,Ö»ÓĞuºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í]
-* ÀàĞÍ7£º´íÎóÊäÈë
+* ç±»å‹1ï¼šsudoku.exe -c 20 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæ•°ç‹¬ç»ˆç›˜]
+* ç±»å‹2ï¼šsudoku.exe -s game.txt [è¡¨ç¤ºä»game.txtè¯»å–è‹¥å¹²ä¸ªæ•°ç‹¬æ¸¸æˆ,å¹¶ç»™å‡ºå…¶è§£ç­”ï¼Œç”Ÿæˆåˆ°sudoku.txtä¸­]
+* ç±»å‹3ï¼šsudoku.exe -n 1000 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªæ•°ç‹¬æ¸¸æˆ]
+* ç±»å‹4ï¼šsudoku.exe -n 1000 -m 1 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªç®€å•æ•°æ¸¸æˆï¼Œåªæœ‰må’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™,mè¡¨ç¤ºç”Ÿæˆæ¸¸æˆçš„éš¾åº¦]
+* ç±»å‹5ï¼šsudoku.exe -n 20 -r 20~55 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæŒ–ç©ºæ•°åœ¨20åˆ°55ä¹‹é—´çš„æ•°ç‹¬æ¸¸æˆï¼Œåªæœ‰rå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* ç±»å‹6ï¼šsudoku.exe -n 20 -u [è¡¨ç¤ºç”Ÿæˆ20ä¸ªè§£å”¯ä¸€çš„æ•°ç‹¬æ¸¸æˆ,åªæœ‰uå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* ç±»å‹7ï¼šé”™è¯¯è¾“å…¥
 */
 #include<algorithm>
 #include <vector>
@@ -29,33 +29,33 @@ ShuDu::ShuDu(ArgCheck arg_check) {
 	this->only_solution = 0;
 	this->filepath = "NONE";
 
-	switch (arg_check.get_ArgType()) {
+	switch (arg_check.GetArgType()) {
 	case 1:
-		this->c = arg_check.get_c();
+		this->c = arg_check.GetC();
 		break;
 	case 2:
-		//printf("Çó½âÊı¶À´ıÊµÏÖ¡£\n");
+		//printf("æ±‚è§£æ•°ç‹¬å¾…å®ç°ã€‚\n");
 		this->filepath = arg_check.GetFilepath();
 		break;
 	case 3:
-		this->n = arg_check.get_n();
+		this->n = arg_check.GetN();
 		this->difficulty = 1;
 		this->empty_num = 20;
 		break;
 	case 4:
-		this->n = arg_check.get_n();
-		this->difficulty = arg_check.get_m();
+		this->n = arg_check.GetN();
+		this->difficulty = arg_check.GetM();
 		if (this->difficulty == 1) this->empty_num = 20;
 		if (this->difficulty == 2) this->empty_num = 35;
 		if (this->difficulty == 3) this->empty_num = 55;
 		break;
 	case 5:
-		this->n = arg_check.get_n();
-		this->r_left = arg_check.get_r_left();
-		this->r_left = arg_check.get_r_right();
+		this->n = arg_check.GetN();
+		this->r_left = arg_check.GetRLeft();
+		this->r_left = arg_check.GetRRight();
 		break;
 	case 6:
-		this->n = arg_check.get_n();
+		this->n = arg_check.GetN();
 		this->only_solution = 1;
 		break;
 	default:
@@ -63,15 +63,15 @@ ShuDu::ShuDu(ArgCheck arg_check) {
 	}
 }
 
-//Éú³ÉÊı¶ÀÖÕ¾Ö
-void ShuDu::gen_shudu_ending(int c = 1) {
-	//ÒÑ¾­Éú³ÉµÄÊı¶ÀÖÕ¾ÖÊıÄ¿
+//ç”Ÿæˆæ•°ç‹¬ç»ˆå±€
+void ShuDu::GenShuduEnding(int c = 1) {
+	//å·²ç»ç”Ÿæˆçš„æ•°ç‹¬ç»ˆå±€æ•°ç›®
 	if (this->c != -1) {
 		c = this->c;
 	}
 	int create_num = 0;
 
-	//ÎÄ¼şĞ´
+	//æ–‡ä»¶å†™
 	for (int i = 0; i < c * 163; i++) {
 		matx[i] = '\t';
 	}
@@ -79,9 +79,9 @@ void ShuDu::gen_shudu_ending(int c = 1) {
 	errno_t err;
 	err = fopen_s(&shudu_ending_file, "shudu.txt", "w");
 	if (err) {
-		printf("´ò¿ªÎÄ¼şÊ§°Ü\n");
+		printf("æ‰“å¼€æ–‡ä»¶å¤±è´¥\n");
 	}
-	//Ä¿±êÉú³Éc¸öÊı¶ÀÖÕ¾Ö
+	//ç›®æ ‡ç”Ÿæˆcä¸ªæ•°ç‹¬ç»ˆå±€
 	int shift[9] = { 0, 3, 6, 1, 4, 7, 2, 5, 8 };
 
 	for (int i = 0; i < 6; i++) {
@@ -90,7 +90,7 @@ void ShuDu::gen_shudu_ending(int c = 1) {
 			break;
 		}
 		if (i) {
-			next_permutation(shift + 3, shift + 6);     //½»»»4~6ĞĞµÄÈÎÒâÁ½ĞĞ
+			next_permutation(shift + 3, shift + 6);     //äº¤æ¢4~6è¡Œçš„ä»»æ„ä¸¤è¡Œ
 			shift[6] = 2, shift[7] = 5, shift[8] = 8;
 		}
 		for (int j = 0; j < 6; j++) {
@@ -98,16 +98,16 @@ void ShuDu::gen_shudu_ending(int c = 1) {
 				break;
 			}
 			if (j) {
-				next_permutation(shift + 6, shift + 9); //½»»»7~9ĞĞµÄÈÎÒâÁ½ĞĞ
+				next_permutation(shift + 6, shift + 9); //äº¤æ¢7~9è¡Œçš„ä»»æ„ä¸¤è¡Œ
 			}
 
 			char row[10] = "712345689";
-			for (int k = 0; k < 40320; k++) { //8!ÅÅÁĞ
+			for (int k = 0; k < 40320; k++) { //8!æ’åˆ—
 				if (create_num >= c) {
 					break;
 				}
 				if (k) {
-					next_permutation(row + 1, row + 9); //µÚÒ»¸öÊı×Ö²»±ä
+					next_permutation(row + 1, row + 9); //ç¬¬ä¸€ä¸ªæ•°å­—ä¸å˜
 				}
 				int m = 0;
 				for (int p = 0; p < 9; p++) {
@@ -124,23 +124,23 @@ void ShuDu::gen_shudu_ending(int c = 1) {
 	}
 	fputs(matx, shudu_ending_file);
 	fclose(shudu_ending_file);
-	printf("Êı¶À--ÖÕ¾ÖÉú³ÉÍê±Ï£¬¼ûÎÄ¼şshudu.txt\n");
+	printf("æ•°ç‹¬--ç»ˆå±€ç”Ÿæˆå®Œæ¯•ï¼Œè§æ–‡ä»¶shudu.txt\n");
 }
 
 
-//Éú³ÉÊı¶ÀÓÎÏ·-r¹Ì¶¨µÄÇé¿ö
-void ShuDu::fixed_r_game(int r = 20) {
-	//ÏÈÉú³ÉÊı¶ÀÖÕ¾Ö£¬ÔÙÍÚ¿Õ
+//ç”Ÿæˆæ•°ç‹¬æ¸¸æˆ-rå›ºå®šçš„æƒ…å†µ
+void ShuDu::FixedRGame(int r = 20) {
+	//å…ˆç”Ÿæˆæ•°ç‹¬ç»ˆå±€ï¼Œå†æŒ–ç©º
 	int c = n;
-	gen_shudu_ending(c);
+	GenShuduEnding(c);
 	FILE* fpQues1;
 	errno_t err = fopen_s(&fpQues1, "game.txt", "w");
 	if (err) {
-		printf("´ò¿ªÎÄ¼şÊ§°Ü\n");
+		printf("æ‰“å¼€æ–‡ä»¶å¤±è´¥\n");
 	}
 	int temp;
 	while (c--) {
-		if (arg_check.get_ArgType() == 5)
+		if (arg_check.GetArgType() == 5)
 			temp = r_left + rand() % r_right;
 		else
 			temp = r;
@@ -157,14 +157,14 @@ void ShuDu::fixed_r_game(int r = 20) {
 	}
 	fputs(matx, fpQues1);
 	fclose(fpQues1);
-	printf("Êı¶À--ÓÎÏ·Éú³ÉÍê±Ï£¬¼ûÎÄ¼şgame.txt\n");
+	printf("æ•°ç‹¬--æ¸¸æˆç”Ÿæˆå®Œæ¯•ï¼Œè§æ–‡ä»¶game.txt\n");
 }
 
-//ÅĞ¶ÏÊı¶À½âÊÇ·ñÎ¨Ò»£º»ØËİ·¨
+//åˆ¤æ–­æ•°ç‹¬è§£æ˜¯å¦å”¯ä¸€ï¼šå›æº¯æ³•
 int board[9][9] = { 0 };
-bool ShuDu::valid_number(int row, int col, int num) {
+bool ShuDu::ValidNumber(int row, int col, int num) {
 	bool is_valid = 1;
-	//ÁĞÊÇ·ñÓĞÏàÍ¬Êı×Ö
+	//åˆ—æ˜¯å¦æœ‰ç›¸åŒæ•°å­—
 	for (int j = 0; j < 9; j++) {
 		if (!is_valid) {
 			break;
@@ -173,7 +173,7 @@ bool ShuDu::valid_number(int row, int col, int num) {
 			is_valid = 0;
 		}
 	}
-	//ĞĞÊÇ·ñÓĞÏàÍ¬Êı×Ö
+	//è¡Œæ˜¯å¦æœ‰ç›¸åŒæ•°å­—
 	for (int i = 0; i < 9; i++) {
 		if (!is_valid) {
 			break;
@@ -182,7 +182,7 @@ bool ShuDu::valid_number(int row, int col, int num) {
 			is_valid = 0;
 		}
 	}
-	//Èı¹¬¸ñÄÚÊÇ·ñÓĞÏàÍ¬Êı×Ö
+	//ä¸‰å®«æ ¼å†…æ˜¯å¦æœ‰ç›¸åŒæ•°å­—
 	int start_row = row - row % 3;
 	int start_col = col - col % 3;
 	for (int i = 0; i < 3; i++) {
@@ -198,7 +198,7 @@ bool ShuDu::valid_number(int row, int col, int num) {
 	return is_valid;
 }
 
-bool ShuDu::is_only_solution(int row, int col) {
+bool ShuDu::IsOnlySolution(int row, int col) {
 	if (col >= 9) {
 		col = 0;
 		row++;
@@ -207,17 +207,17 @@ bool ShuDu::is_only_solution(int row, int col) {
 		}
 	}
 	if (board[row][col] != 0) {
-		return is_only_solution(row, col + 1);
+		return IsOnlySolution(row, col + 1);
 	}
-	//if(board[row][col] == '0') --> ÌîÈëÊı×Ö£¬¿´ÊÇ·ñÊÇÎ¨Ò»½â
+	//if(board[row][col] == '0') --> å¡«å…¥æ•°å­—ï¼Œçœ‹æ˜¯å¦æ˜¯å”¯ä¸€è§£
 	vector<int> nums{ 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	auto seed = std::chrono::system_clock::now().time_since_epoch().count();
 	shuffle(nums.begin(), nums.end(), std::default_random_engine(seed));
 	for (int num = 0; num < 9; num++) {
 		int tmp = nums[num];
-		if (valid_number(row, col, tmp)) {
+		if (ValidNumber(row, col, tmp)) {
 			board[row][col] = tmp;
-			if (is_only_solution(row, col + 1)) {
+			if (IsOnlySolution(row, col + 1)) {
 				return true;
 			}
 			board[row][col] = 0;
@@ -226,7 +226,7 @@ bool ShuDu::is_only_solution(int row, int col) {
 	return false;
 }
 
-void ShuDu::gen_onlySolu_game() {
+void ShuDu::GenOnlySoluGame() {
 	for (int i = 0; i < n * 163; i++) {
 		matx[i] = '\t';
 	}
@@ -235,15 +235,15 @@ void ShuDu::gen_onlySolu_game() {
 	//err = fopen_s(&OnlyFile, "game_only.txt", "w");
 	int k = 0;
 	while (k < n) {
-		//ÖØĞÂ³õÊ¼»¯Êı×é
+		//é‡æ–°åˆå§‹åŒ–æ•°ç»„
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				board[i][j] = 0;
 			}
 		}
-		//Éú³ÉºÏÊÊµÄÊı¶ÀÓÎÏ·
-		if (!is_only_solution(0, 0)) {
-			printf("ÔÙ´Î³¢ÊÔ\n");
+		//ç”Ÿæˆåˆé€‚çš„æ•°ç‹¬æ¸¸æˆ
+		if (!IsOnlySolution(0, 0)) {
+			printf("å†æ¬¡å°è¯•\n");
 			continue;
 		}
 		int m = 0;
@@ -262,43 +262,43 @@ void ShuDu::gen_onlySolu_game() {
 		k++;
 	}
 	matx[163 * k] = '\0';
-	fixed_r_game(20);
+	FixedRGame(20);
 	//fputs(matx, OnlyFile);
 	//fclose(OnlyFile);
-	printf("Êı¶À--Î¨Ò»½âÓÎÏ·Éú³ÉÍê±Ï£¬¼ûÎÄ¼şgame.txt\n");
+	printf("æ•°ç‹¬--å”¯ä¸€è§£æ¸¸æˆç”Ÿæˆå®Œæ¯•ï¼Œè§æ–‡ä»¶game.txt\n");
 }
 
-//Éú³ÉÊı¶ÀÓÎÏ·
-void ShuDu::gen_shudu_game(int r = 20) {
-	//ÍÚ¿ÕµÄÊıÁ¿ Ä¬ÈÏÎª20
+//ç”Ÿæˆæ•°ç‹¬æ¸¸æˆ
+void ShuDu::GenShuduGame(int r = 20) {
+	//æŒ–ç©ºçš„æ•°é‡ é»˜è®¤ä¸º20
 	if (empty_num != -1) {
 		//cout << "empty_num:" << empty_num << endl;
 		r = empty_num;
 	}
-	//ÅĞ¶ÏÀàĞÍ
-	//¹Ì¶¨µÄrÖµ----3£ºsudoku.exe -n 1000»òÕß4£ºsudoku.exe -n 1000 -m 1 
-	if (arg_check.get_ArgType() == 3 || arg_check.get_ArgType() == 4) {
-		fixed_r_game(r);
+	//åˆ¤æ–­ç±»å‹
+	//å›ºå®šçš„rå€¼----3ï¼šsudoku.exe -n 1000æˆ–è€…4ï¼šsudoku.exe -n 1000 -m 1 
+	if (arg_check.GetArgType() == 3 || arg_check.GetArgType() == 4) {
+		FixedRGame(r);
 		return;
 	}
-	//²»¹Ì¶¨µÄrÖµ----5£ºsudoku.exe -n 20 -r 20~55
-	if (arg_check.get_ArgType() == 5) {
-		//Ëæ»úÉú³Ér : r_left~r_right
+	//ä¸å›ºå®šçš„rå€¼----5ï¼šsudoku.exe -n 20 -r 20~55
+	if (arg_check.GetArgType() == 5) {
+		//éšæœºç”Ÿæˆr : r_left~r_right
 		r = r_left + rand() % r_right;
-		fixed_r_game(r);
+		FixedRGame(r);
 		return;
 	}
-	//ĞèÒªÓĞÎ¨Ò»µÄ½â----6£ºsudoku.exe -n 20 -u
-	if (arg_check.get_ArgType() == 6) {
-		gen_onlySolu_game();
+	//éœ€è¦æœ‰å”¯ä¸€çš„è§£----6ï¼šsudoku.exe -n 20 -u
+	if (arg_check.GetArgType() == 6) {
+		GenOnlySoluGame();
 		return;
 	}
 }
 
 
-//******Çó½âÊı¶ÀÏà¹Øº¯Êı*******
+//******æ±‚è§£æ•°ç‹¬ç›¸å…³å‡½æ•°*******
 
-//¶ÁÈ¡game.txtÎÄ¼ş
+//è¯»å–game.txtæ–‡ä»¶
 vector<vector<vector<int>>> ShuDu::ReadGameFile(string filepath1){
 	//string filepath = "game.txt";
 	ifstream myfile(filepath1);
@@ -306,7 +306,7 @@ vector<vector<vector<int>>> ShuDu::ReadGameFile(string filepath1){
 	vector<vector<int>> result;
 	vector<int> res;
 
-	// °´ĞĞ¶ÁÈ¡
+	// æŒ‰è¡Œè¯»å–
 	while (getline(myfile, temp))
 	{
 		stringstream input(temp);
@@ -326,7 +326,7 @@ vector<vector<vector<int>>> ShuDu::ReadGameFile(string filepath1){
 	vector<vector<vector<int>>> tmp3;
 	vector<vector<int>> tmp2;
 
-	//Ïû³ı´¿»»ĞĞĞĞ
+	//æ¶ˆé™¤çº¯æ¢è¡Œè¡Œ
 	for (int i = 0; i < result.size(); i++) {
 		//cout << result[i].size() << endl;
 		if (result[i].size() == 0)
@@ -349,73 +349,73 @@ vector<vector<vector<int>>> ShuDu::ReadGameFile(string filepath1){
 	return tmp3;
 }
 
-//ÅĞ¶Ï¸ÃÊı×ÖÊÇ·ñºÏÊÊ
+//åˆ¤æ–­è¯¥æ•°å­—æ˜¯å¦åˆé€‚
 bool ShuDu::IsValid(int row, int col, int val, vector<vector<int>>& board) {
 	int startRow = (row / 3) * 3;
 	int startCol = (col / 3) * 3;
 	for (int i = 0; i < board.size(); ++i) {
-		if (board[i][col] == val)return false; // ÅĞ¶ÏĞĞÀïÊÇ·ñÖØ¸´
-		if (board[row][i] == val)return false; // ÅĞ¶ÏÁĞÀïÊÇ·ñÖØ¸´
-		if (board[startRow + i / 3][startCol + i % 3] == val)return false; // ÅĞ¶Ï9·½¸ñÀïÊÇ·ñÖØ¸´
+		if (board[i][col] == val)return false; // åˆ¤æ–­è¡Œé‡Œæ˜¯å¦é‡å¤
+		if (board[row][i] == val)return false; // åˆ¤æ–­åˆ—é‡Œæ˜¯å¦é‡å¤
+		if (board[startRow + i / 3][startCol + i % 3] == val)return false; // åˆ¤æ–­9æ–¹æ ¼é‡Œæ˜¯å¦é‡å¤
 	}
 	return true;
 }
 
 bool ShuDu::BackTracking(vector<vector<int>>& board) {
 
-	//±éÀúËùÓĞÍø¸ñ
+	//éå†æ‰€æœ‰ç½‘æ ¼
 	for (int i = 0; i < board.size(); ++i) {        // row
 		for (int j = 0; j < board[i].size(); ++j) { // column
 
-			// Ë÷ÒıÒÆ¶¯·ÇÊı×ÖµÄÎ»ÖÃ£¡
+			// ç´¢å¼•ç§»åŠ¨éæ•°å­—çš„ä½ç½®ï¼
 			if (board[i][j] != 0) continue;
 
-			//  ³¢ÊÔÌîÈëÊı×Ö1¡«9¡£
+			//  å°è¯•å¡«å…¥æ•°å­—1ï½9ã€‚
 			for (int ch = 1; ch <= 9; ch++) {
-				if (IsValid(i, j, ch, board)) {  //ÅĞ¶ÏÊÇ·ñºÏ·¨
+				if (IsValid(i, j, ch, board)) {  //åˆ¤æ–­æ˜¯å¦åˆæ³•
 					board[i][j] = ch;
 					if (BackTracking(board)) return true;
 				}
 			}
 
-			board[i][j] = 0;  // »ØËİ¸´Ô­
+			board[i][j] = 0;  // å›æº¯å¤åŸ
 			return false;
 		}
 	}
 
-	return true;  //±éÀúÁËËùÓĞÍø¸ñ£¬ËµÃ÷ËùÓĞ¿Õ¶¼ÌîºÃÁË£¬¿ÉÒÔ·µ»ØÁË¡£
+	return true;  //éå†äº†æ‰€æœ‰ç½‘æ ¼ï¼Œè¯´æ˜æ‰€æœ‰ç©ºéƒ½å¡«å¥½äº†ï¼Œå¯ä»¥è¿”å›äº†ã€‚
 }
 
 
 void ShuDu::SolveShuDu(const string& filepath1){
 
-	//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	ifstream myfile(filepath1);
-	// ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	// åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	if (myfile.good())
 	{
-		printf("game.txtÎÄ¼ş¶ÁÈ¡³É¹¦...\n");
+		printf("game.txtæ–‡ä»¶è¯»å–æˆåŠŸ...\n");
 	}
 	else
 	{
-		printf("ÓÎÏ·ÎÄ¼ş¶ÁÈ¡Ê§°Ü£¬ÇëÖØÊÔ...\n");
+		printf("æ¸¸æˆæ–‡ä»¶è¯»å–å¤±è´¥ï¼Œè¯·é‡è¯•...\n");
 	}
 
 
-	//ÎÄ¼ş¶ÁÈ¡
+	//æ–‡ä»¶è¯»å–
 	vector<vector<vector<int>>> tmp3 = ReadGameFile(filepath1);
 
 	fstream f;
-	//ÎÄ¼şĞ´Èë£¬»á¸²¸ÇÔ­À´µÄÄÚÈİ
+	//æ–‡ä»¶å†™å…¥ï¼Œä¼šè¦†ç›–åŸæ¥çš„å†…å®¹
 	f.open("shuduku.txt", ios::out);
 
 
 	for (int k = 0; k < tmp3.size(); k++)
 	{
-		//Èç¹ûÕÒµ½ÁË·ûºÏÒªÇóµÄÖÕ¾Ö
+		//å¦‚æœæ‰¾åˆ°äº†ç¬¦åˆè¦æ±‚çš„ç»ˆå±€
 		if (BackTracking(tmp3[k]))
 		{
-			// ½øĞĞÎÄ¼şµÄĞ´Èë
+			// è¿›è¡Œæ–‡ä»¶çš„å†™å…¥
 			for (int i = 0; i < tmp3[k].size(); i++) {
 				for (int j = 0; j < tmp3[k][i].size(); j++) {
 					f << tmp3[k][i][j] << "\t";
@@ -429,5 +429,5 @@ void ShuDu::SolveShuDu(const string& filepath1){
 	f.close();
 
 	if (myfile.good())
-	    printf("Êı¶ÀÓÎÏ·Çó½âÍê±Ï£¬¼ûÎÄ¼şshuduku.txt\n");
+	    printf("æ•°ç‹¬æ¸¸æˆæ±‚è§£å®Œæ¯•ï¼Œè§æ–‡ä»¶shuduku.txt\n");
 }
