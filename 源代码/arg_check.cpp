@@ -1,12 +1,12 @@
 #pragma once
 /*
-* ÀàĞÍ1£ºsudoku.exe -c 20 [±íÊ¾Éú³É20¸öÊı¶ÀÖÕÅÌ]
-* ÀàĞÍ2£ºsudoku.exe -s game.txt [±íÊ¾´Ógame.txt¶ÁÈ¡Èô¸É¸öÊı¶ÀÓÎÏ·,²¢¸ø³öÆä½â´ğ£¬Éú³Éµ½sudoku.txtÖĞ]
-* ÀàĞÍ3£ºsudoku.exe -n 1000 [±íÊ¾Éú³É1000¸öÊı¶ÀÓÎÏ·]
-* ÀàĞÍ4£ºsudoku.exe -n 1000 -m 1 [±íÊ¾Éú³É1000¸ö¼òµ¥ÊıÓÎÏ·£¬Ö»ÓĞmºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í,m±íÊ¾Éú³ÉÓÎÏ·µÄÄÑ¶È]
-* ÀàĞÍ5£ºsudoku.exe -n 20 -r 20~55 [±íÊ¾Éú³É20¸öÍÚ¿ÕÊıÔÚ20µ½55Ö®¼äµÄÊı¶ÀÓÎÏ·£¬Ö»ÓĞrºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í]
-* ÀàĞÍ6£ºsudoku.exe -n 20 -u [±íÊ¾Éú³É20¸ö½âÎ¨Ò»µÄÊı¶ÀÓÎÏ·,Ö»ÓĞuºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í]
-* ÀàĞÍ7£º´íÎóÊäÈë
+* ç±»å‹1ï¼šsudoku.exe -c 20 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæ•°ç‹¬ç»ˆç›˜]
+* ç±»å‹2ï¼šsudoku.exe -s game.txt [è¡¨ç¤ºä»game.txtè¯»å–è‹¥å¹²ä¸ªæ•°ç‹¬æ¸¸æˆ,å¹¶ç»™å‡ºå…¶è§£ç­”ï¼Œç”Ÿæˆåˆ°sudoku.txtä¸­]
+* ç±»å‹3ï¼šsudoku.exe -n 1000 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªæ•°ç‹¬æ¸¸æˆ]
+* ç±»å‹4ï¼šsudoku.exe -n 1000 -m 1 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªç®€å•æ•°æ¸¸æˆï¼Œåªæœ‰må’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™,mè¡¨ç¤ºç”Ÿæˆæ¸¸æˆçš„éš¾åº¦]
+* ç±»å‹5ï¼šsudoku.exe -n 20 -r 20~55 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæŒ–ç©ºæ•°åœ¨20åˆ°55ä¹‹é—´çš„æ•°ç‹¬æ¸¸æˆï¼Œåªæœ‰rå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* ç±»å‹6ï¼šsudoku.exe -n 20 -u [è¡¨ç¤ºç”Ÿæˆ20ä¸ªè§£å”¯ä¸€çš„æ•°ç‹¬æ¸¸æˆ,åªæœ‰uå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* ç±»å‹7ï¼šé”™è¯¯è¾“å…¥
 */
 #include "arg_check.h"
 
@@ -23,48 +23,48 @@ ArgCheck::ArgCheck(int argc, char* argv[]) {
 	this->filepath = "NONE";
 }
 
-//·ÖÎö²ÎÊı
-void ArgCheck::analy_Arg() {
+//åˆ†æå‚æ•°
+void ArgCheck::AnalyArg() {
 	if (argc < 3) {
-		printf("²ÎÊıÊıÁ¿¹ıÉÙ£¬Çë¼ì²éÊäÈë\n");
+		printf("å‚æ•°æ•°é‡è¿‡å°‘ï¼Œè¯·æ£€æŸ¥è¾“å…¥\n");
 		return;
 	}
 	if (argc == 3) {
-		//Ö¸ÁîĞÎÊ½£ºsudoku.exe -c 20
+		//æŒ‡ä»¤å½¢å¼ï¼šsudoku.exe -c 20
 		if (strcmp(argv[1], "-c") == 0) {
 			sscanf_s(argv[2], "%d", &c);
 			arg_type = 1;
 			return;
 		}
-		//Ö¸ÁîĞÎÊ½£ºsudoku.exe -s game.txt
+		//æŒ‡ä»¤å½¢å¼ï¼šsudoku.exe -s game.txt
 		if (strcmp(argv[1], "-s") == 0) {
-			//printf("-sÖ¸Áî´ıÊµÏÖ\n");
+			//printf("-sæŒ‡ä»¤å¾…å®ç°\n");
 			filepath = argv[2];
 			arg_type = 2;
 			return;
 		}
-		//Ö¸ÁîĞÎÊ½£ºsudoku.exe -n 1000
+		//æŒ‡ä»¤å½¢å¼ï¼šsudoku.exe -n 1000
 		if (strcmp(argv[1], "-n") == 0) {
 			n = atoi(argv[2]);
 			arg_type = 3;
 			return;
 		}
 	}
-	//Ö¸ÁîĞÎÊ½£ºsudoku.exe -n 20 -u
+	//æŒ‡ä»¤å½¢å¼ï¼šsudoku.exe -n 20 -u
 	if (argc == 4) {
 		n = atoi(argv[2]);
 		arg_type = 6;
 		return;
 	}
 	if (argc == 5) {
-		//Ö¸ÁîĞÎÊ½£ºsudoku.exe -n 1000 -m 1 
+		//æŒ‡ä»¤å½¢å¼ï¼šsudoku.exe -n 1000 -m 1 
 		if (strcmp(argv[1], "-n") == 0 && strcmp(argv[3], "-m") == 0) {
 			n = atoi(argv[2]);
 			m = atoi(argv[4]);
 			arg_type = 4;
 			return;
 		}
-		//Ö¸ÁîĞÎÊ½£ºsudoku.exe -n 20 -r 20~55
+		//æŒ‡ä»¤å½¢å¼ï¼šsudoku.exe -n 20 -r 20~55
 		if (strcmp(argv[1], "-n") == 0 && strcmp(argv[3], "-r") == 0) {
 			n = atoi(argv[2]);
 			char delims[] = "~";
@@ -82,71 +82,71 @@ void ArgCheck::analy_Arg() {
 	}
 }
 
-//²ÎÊıÊäÈëÊÇ·ñºÏ·¨
-bool ArgCheck::valid_arg() {
+//å‚æ•°è¾“å…¥æ˜¯å¦åˆæ³•
+bool ArgCheck::ValidArg() {
 	if (arg_type == 7) {
 		return 0;
 	}
 	if (c != -1 && (c < 1 || c>1e6)) {
-		printf("²»ºÏ·¨µÄÊäÈëc\n");
+		printf("ä¸åˆæ³•çš„è¾“å…¥c\n");
 		return 0;
 	}
 	if (n != -1 && (n < 1 || n>1e4)) {
-		printf("²»ºÏ·¨µÄÊäÈën\n");
+		printf("ä¸åˆæ³•çš„è¾“å…¥n\n");
 		return 0;
 	}
 	if (m != -1 && (m < 1 || m>3)) {
-		printf("²»ºÏ·¨µÄÊäÈëm\n");
+		printf("ä¸åˆæ³•çš„è¾“å…¥m\n");
 		return 0;
 	}
 	if (r_left != -1 && (r_left < 20 || r_left > 55)) {
-		printf("²»ºÏ·¨µÄÊäÈërleft\n");
+		printf("ä¸åˆæ³•çš„è¾“å…¥rleft\n");
 		return 0;
 	}
 	if (r_right != -1 && (r_right < 20 || r_right > 55)) {
-		printf("²»ºÏ·¨µÄÊäÈërright\n");
+		printf("ä¸åˆæ³•çš„è¾“å…¥rright\n");
 		return 0;
 	}
 	if (r_right < r_left) {
-		printf("rrightÓ¦¸Ã´óÓÚrleft\n");
+		printf("rrightåº”è¯¥å¤§äºrleft\n");
 		return 0;
 	}
 	return 1;
 }
 
-void ArgCheck::print_arg() {
-	printf("²ÎÊıarg_type:%d\t", arg_type);
-	printf("²ÎÊıc:%d\t", c);
-	printf("²ÎÊın:%d\t", n);
-	printf("²ÎÊım:%d\t", m);
-	printf("²ÎÊır_left:%d\t", r_left);
-	printf("²ÎÊır_right:%d\t\n", r_right);
-	printf("²ÎÊıfilepath:%s\t\n", filepath.c_str());
+void ArgCheck::PrintArg() {
+	printf("å‚æ•°arg_type:%d\t", arg_type);
+	printf("å‚æ•°c:%d\t", c);
+	printf("å‚æ•°n:%d\t", n);
+	printf("å‚æ•°m:%d\t", m);
+	printf("å‚æ•°r_left:%d\t", r_left);
+	printf("å‚æ•°r_right:%d\t\n", r_right);
+	printf("å‚æ•°filepath:%s\t\n", filepath.c_str());
 }
 
-//·µ»Ø²ÎÊıÀàĞÍ
-int ArgCheck::get_ArgType() {
+//è¿”å›å‚æ•°ç±»å‹
+int ArgCheck::GetArgType() {
 	return this->arg_type;
 }
 
-//·µ»Ø²ÎÊıÖµ
-int ArgCheck::get_c() {
+//è¿”å›å‚æ•°å€¼
+int ArgCheck::GetC() {
 	return this->c;
 }
 
-int ArgCheck::get_n() {
+int ArgCheck::GetN() {
 	return this->n;
 }
 
-int ArgCheck::get_m() {
+int ArgCheck::GetN() {
 	return this->m;
 }
 
-int ArgCheck::get_r_left() {
+int ArgCheck::GetRLeft() {
 	return this->r_left;
 }
 
-int ArgCheck::get_r_right() {
+int ArgCheck::GetRRight() {
 	return this->r_right;
 }
 
