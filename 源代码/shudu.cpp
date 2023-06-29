@@ -8,58 +8,58 @@ using namespace std;
 
 
 
-//Éú³É²»ÖØ¸´µÄÊı¶ÀÖÕ¾ÖÖÁÎÄ¼ş
-//Éú³ÉÖ¸Áî£ºshudu.exe-c100 
-//ÆäËû²ÎÊı£º
+//ç”Ÿæˆä¸é‡å¤çš„æ•°ç‹¬ç»ˆå±€è‡³æ–‡ä»¶
+//ç”ŸæˆæŒ‡ä»¤ï¼šshudu.exe-c100 
+//å…¶ä»–å‚æ•°ï¼š
 /*
-* sudoku.exe -c 20 [±íÊ¾Éú³É20¸öÊı¶ÀÖÕÅÌ]
-* sudoku.exe -s game.txt [±íÊ¾´Ógame.txt¶ÁÈ¡Èô¸É¸öÊı¶ÀÓÎÏ·,²¢¸ø³öÆä½â´ğ£¬Éú³Éµ½sudoku.txtÖĞ]
-* sudoku.exe -n 1000 [±íÊ¾Éú³É1000¸öÊı¶ÀÓÎÏ·]
-* sudoku.exe -n 1000 -m 1 [±íÊ¾Éú³É1000¸ö¼òµ¥ÊıÓÎÏ·£¬Ö»ÓĞmºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í,m±íÊ¾Éú³ÉÓÎÏ·µÄÄÑ¶È]
-* sudoku.exe -n 20 -r 20~55 [±íÊ¾Éú³É20¸öÍÚ¿ÕÊıÔÚ20µ½55Ö®¼äµÄÊı¶ÀÓÎÏ·£¬Ö»ÓĞrºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í]
-* sudoku.exe -n 20 -u [±íÊ¾Éú³É20¸ö½âÎ¨Ò»µÄÊı¶ÀÓÎÏ·,Ö»ÓĞuºÍnÒ»ÆğÊ¹ÓÃ²ÅÈÏÎª²ÎÊıÎŞÎó£¬·ñÔòÇë±¨´í]
+* sudoku.exe -c 20 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæ•°ç‹¬ç»ˆç›˜]
+* sudoku.exe -s game.txt [è¡¨ç¤ºä»game.txtè¯»å–è‹¥å¹²ä¸ªæ•°ç‹¬æ¸¸æˆ,å¹¶ç»™å‡ºå…¶è§£ç­”ï¼Œç”Ÿæˆåˆ°sudoku.txtä¸­]
+* sudoku.exe -n 1000 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªæ•°ç‹¬æ¸¸æˆ]
+* sudoku.exe -n 1000 -m 1 [è¡¨ç¤ºç”Ÿæˆ1000ä¸ªç®€å•æ•°æ¸¸æˆï¼Œåªæœ‰må’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™,mè¡¨ç¤ºç”Ÿæˆæ¸¸æˆçš„éš¾åº¦]
+* sudoku.exe -n 20 -r 20~55 [è¡¨ç¤ºç”Ÿæˆ20ä¸ªæŒ–ç©ºæ•°åœ¨20åˆ°55ä¹‹é—´çš„æ•°ç‹¬æ¸¸æˆï¼Œåªæœ‰rå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
+* sudoku.exe -n 20 -u [è¡¨ç¤ºç”Ÿæˆ20ä¸ªè§£å”¯ä¸€çš„æ•°ç‹¬æ¸¸æˆ,åªæœ‰uå’Œnä¸€èµ·ä½¿ç”¨æ‰è®¤ä¸ºå‚æ•°æ— è¯¯ï¼Œå¦åˆ™è¯·æŠ¥é”™]
 */
 
 int main(int argc, char* argv[]) {
-	//²ÎÊıÊ¶±ğ
+	//å‚æ•°è¯†åˆ«
 	ArgCheck arg_check = ArgCheck(argc, argv);
-	arg_check.analy_Arg();
-	if (!arg_check.valid_arg()) {
-		printf("ÊäÈëÓĞÎó£¬Çë¼ì²éÊäÈë\n");
+	arg_check.AnalyArg();
+	if (!arg_check.ValidArg()) {
+		printf("è¾“å…¥æœ‰è¯¯ï¼Œè¯·æ£€æŸ¥è¾“å…¥\n");
 		return 0;
 	}
-	arg_check.print_arg();
+	arg_check.PrintArg();
 
-	int type = arg_check.get_ArgType();
+	int type = arg_check.GetArgType();
 	ShuDu shudu_op = ShuDu(arg_check);
-	//¸ù¾İÊ¶±ğµÄ²ÎÊı½øĞĞÏàÓ¦µÄ²Ù×÷
+	//æ ¹æ®è¯†åˆ«çš„å‚æ•°è¿›è¡Œç›¸åº”çš„æ“ä½œ
 	switch (type) {
 		//sudoku.exe -c 20
 	case 1:
-		shudu_op.gen_shudu_ending(arg_check.get_c());
+		shudu_op.GenShuduEnding(arg_check.GetC());
 		break;
 		//sudoku.exe -s game.txt
 	case 2:
-		//Ìí¼ÓÊı¶ÀÓÎÏ·µÄ¼ÆËã
+		//æ·»åŠ æ•°ç‹¬æ¸¸æˆçš„è®¡ç®—
 		shudu_op.SolveShuDu(arg_check.GetFilepath());
 		break;
 		//sudoku.exe -n 1000 
 	case 3:
-		shudu_op.gen_shudu_game(arg_check.get_m());
+		shudu_op.GenShuduGame(arg_check.GetM());
 		break;
 		//sudoku.exe -n 1000 -m 1 
 	case 4:
-		shudu_op.gen_shudu_game(arg_check.get_m());
+		shudu_op.GenShuduGame(arg_check.GetM());
 		break;
 		//sudoku.exe -n 20 -r 20~55
 	case 5:
-		shudu_op.gen_shudu_game(arg_check.get_r_left());
+		shudu_op.GenShuduGame(arg_check.GetRLeft());
 		break;
 		//sudoku.exe -n 20 -u
 	case 6:
-		shudu_op.gen_shudu_game(arg_check.get_r_left());
+		shudu_op.GenShuduGame(arg_check.GetRLeft());
 		break;
-		//´íÎóÊäÈë
+		//é”™è¯¯è¾“å…¥
 	case 7:
 		break;
 	}
