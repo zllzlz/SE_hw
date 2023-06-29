@@ -12,49 +12,49 @@ using namespace std;
 
 class ShuDu {
 public:
-	//³õÊ¼»¯º¯Êı£¬Ö±½Ó·ÅÈë²ÎÊı·ÖÎö¶ÔÏó
+	//åˆå§‹åŒ–å‡½æ•°ï¼Œç›´æ¥æ”¾å…¥å‚æ•°åˆ†æå¯¹è±¡
 	ShuDu(ArgCheck arg_check);
 
-	//Éú³ÉÊı¶ÀÖÕ¾Ö
-	void gen_shudu_ending(int c);
+	//ç”Ÿæˆæ•°ç‹¬ç»ˆå±€
+	void GenShuduEnding(int c);
 
-	//Éú³ÉÊı¶ÀÓÎÏ·£¨¶ÔÉú³ÉµÄÊı¶ÀÖÕ¾Ö½øĞĞÍÚ¿Õ£©
-	void gen_shudu_game(int r);
-	void fixed_r_game(int r);
+	//ç”Ÿæˆæ•°ç‹¬æ¸¸æˆï¼ˆå¯¹ç”Ÿæˆçš„æ•°ç‹¬ç»ˆå±€è¿›è¡ŒæŒ–ç©ºï¼‰
+	void GenShuduGame(int r);
+	void FixedRGame(int r);
 
-	//Éú³ÉÎ¨Ò»½âµÄÊı¶ÀÓÎÏ·
-	bool is_only_solution(int row, int col);
-	//ÌîÈëµÄÊı×ÖÊÇ·ñ·ûºÏÊı¶À¹æÔò
-	bool valid_number(int row, int col, int num);
-	void gen_onlySolu_game();
+	//ç”Ÿæˆå”¯ä¸€è§£çš„æ•°ç‹¬æ¸¸æˆ
+	bool IsOnlySolution(int row, int col);
+	//å¡«å…¥çš„æ•°å­—æ˜¯å¦ç¬¦åˆæ•°ç‹¬è§„åˆ™
+	bool ValidNumber(int row, int col, int num);
+	void GenOnlySoluGame();
 
 
-	//******Çó½âÊı¶ÀÏà¹Øº¯Êı*******
-	// game.txtÎÄ¼ş¶ÁÈ¡
+	//******æ±‚è§£æ•°ç‹¬ç›¸å…³å‡½æ•°*******
+	// game.txtæ–‡ä»¶è¯»å–
 	vector<vector<vector<int>>> ReadGameFile(string filepath1);
-    // ¸ÃÊı×ÖÊÇ·ñºÏÊÊ
+    // è¯¥æ•°å­—æ˜¯å¦åˆé€‚
     bool IsValid(int row, int col, int val, vector<vector<int>>& board);
-    //Êı¶ÀÇó½â
+    //æ•°ç‹¬æ±‚è§£
     bool BackTracking(vector<vector<int>>& board);
 	void SolveShuDu(const string& filepath1);
 
 
 private:
-	//²ÎÊı¶ÔÏó »ñÈ¡c,n,mµÈÖµ
+	//å‚æ•°å¯¹è±¡ è·å–c,n,mç­‰å€¼
 	ArgCheck arg_check;
 	int c;
 	int n;
-	//ÄÑ¶È£ºÄÑ¶È1-ÍÚ¿Õ20¸ö ÄÑ¶È2-ÍÚ¿Õ35¸ö ÄÑ¶È3-ÍÚ¿Õ55¸ö. Ä¬ÈÏÎªÄÑ¶È1
+	//éš¾åº¦ï¼šéš¾åº¦1-æŒ–ç©º20ä¸ª éš¾åº¦2-æŒ–ç©º35ä¸ª éš¾åº¦3-æŒ–ç©º55ä¸ª. é»˜è®¤ä¸ºéš¾åº¦1
 	int difficulty;
-	//ÍÚ¿ÕµÄ¸ñ×ÓÊıÁ¿ Ä¬ÈÏÎªÄÑ¶È1µÄ20¸ö
+	//æŒ–ç©ºçš„æ ¼å­æ•°é‡ é»˜è®¤ä¸ºéš¾åº¦1çš„20ä¸ª
 	int empty_num;
-	//ÍÚ¿Õ¸ñ×ÓÊıÁ¿ÓĞÒ»¶¨ÏŞÖÆ
+	//æŒ–ç©ºæ ¼å­æ•°é‡æœ‰ä¸€å®šé™åˆ¶
 	int r_left;
 	int r_right;
-	//½âÊÇ·ñÎ¨Ò»
+	//è§£æ˜¯å¦å”¯ä¸€
 	bool only_solution;
 
-	//Çó½âÊ±¶ÁÈ¡µÄÎÄ¼şÂ·¾¶
+	//æ±‚è§£æ—¶è¯»å–çš„æ–‡ä»¶è·¯å¾„
 	string filepath;
 };
 
